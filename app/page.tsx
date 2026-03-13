@@ -13,7 +13,6 @@ import {
   Search,
   LayoutDashboard,
   TestTube,
-  TrendingUp,
   Target,
   Globe,
   Handshake,
@@ -39,7 +38,7 @@ import {
 type Language = "en" | "ar";
 
 const SERVICE_ICONS = [Store, Palette, Layout, Code2, Plug, Headphones] as const;
-const PROCESS_ICONS = [Search, LayoutDashboard, Code2, TestTube, TrendingUp] as const;
+const PROCESS_ICONS = [Search, LayoutDashboard, Code2, TestTube] as const;
 const WHY_ICONS = [Target, Globe, Palette, Handshake] as const;
 const EXAMPLE_ICONS = [Store, RefreshCw, Box, Headphones] as const;
 const INDUSTRY_ICONS = [Shirt, Sparkles, UtensilsCrossed, Heart, ShoppingBag, Activity, HomeIcon, Store] as const;
@@ -67,139 +66,134 @@ const content = {
       contact: "Contact",
     },
     hero: {
-      badge: "Salla partner UAE · GCC",
-      title: "Salla Development Partner in Dubai for Growing GCC Brands",
+      badge: "Leading Salla developer Dubai · UAE & GCC",
+      title: "#1 Salla Developer in Dubai – Store Development, Redesign & Support for UAE & GCC",
       subtitle:
-        "We build, customize, and scale Salla stores with modern design, advanced integrations, custom features, and ongoing technical support for ecommerce businesses in the UAE and across the GCC.",
+        "Dubai-based Salla development agency. We build, redesign, and scale Salla stores for brands across Dubai, UAE, Saudi Arabia, and the GCC. Custom themes, integrations, apps, and ongoing Salla support—all from Dubai.",
       primaryCta: "Start Your Project",
       secondaryCta: "Talk on WhatsApp",
-      trust: ["Based in Dubai UAE", "Bilingual Support", "Built for GCC Ecommerce"],
+      trust: ["Dubai HQ · UAE", "Salla specialist", "UAE & GCC ecommerce"],
     },
     trustIntro: {
-      heading: "Specialized Salla Development for Serious Ecommerce Businesses",
+      heading: "The Go-To Salla Development Agency in Dubai for UAE & GCC Brands",
       body: [
-        "SouqFlow helps brands launch and grow on Salla with a strong focus on performance, design quality, custom functionality, and operational efficiency. Whether you need a new store, a redesign, app-like features, custom integrations, or long-term support, we help you build a Salla store that is ready for real business growth.",
-        "We understand that ecommerce brands in the Gulf need more than basic setup. They need fast storefronts, clean customer journeys, localized experiences, strong technical support, and integrations that reduce manual work. That is where we focus.",
+        "SouqFlow is a Dubai-based Salla development studio helping brands across the UAE, Saudi Arabia, and the GCC launch and grow on Salla. We focus on Salla store development, Salla store redesign, Salla theme customization, Salla app development, and Salla integrations—so your Dubai or Gulf ecommerce store performs and converts.",
+        "Ecommerce brands in Dubai and the Gulf need more than basic Salla setup. They need a dedicated Salla developer in Dubai: fast storefronts, Arabic–English UX, local payment and shipping, and reliable Salla support. That’s what we deliver from our Dubai office.",
       ],
-      strip: ["Salla development", "Salla partner UAE", "Salla developer Dubai", "Salla ecommerce development"],
+      strip: ["Salla developer Dubai", "Salla store development UAE", "Salla partner Dubai", "Salla ecommerce Dubai"],
     },
     services: {
-      heading: "Our Salla Services",
+      heading: "Salla Development Services in Dubai – What We Offer",
       items: [
         {
-          title: "Salla Store Development",
+          title: "Salla Store Development Dubai",
           description:
-            "We build custom Salla stores for brands launching a new ecommerce business or moving to a more scalable setup. This includes store structure, branded design direction, page layouts, feature setup, payment and shipping configuration, and complete launch support.",
+            "Full Salla store development for Dubai and UAE brands: store structure, branded design, page layouts, payments and shipping, and launch support. The go-to Salla developer in Dubai for new ecommerce stores.",
         },
         {
-          title: "Salla Store Redesign",
+          title: "Salla Store Redesign UAE & GCC",
           description:
-            "If your current Salla store feels outdated or is not performing as expected, we redesign the customer experience, improve the storefront presentation, and create a more polished ecommerce journey focused on trust and conversion.",
+            "Redesign your existing Salla store for better conversion. We improve UX, mobile experience, and storefront design so your Dubai or GCC Salla store looks and performs like a premium brand.",
         },
         {
-          title: "Salla Theme Customization",
+          title: "Salla Theme Customization Dubai",
           description:
-            "We customize Salla themes to match your brand identity, improve usability, and create a more premium shopping experience. This includes homepage sections, product pages, collection pages, mobile optimization, and custom design enhancements.",
+            "Custom Salla theme work for Dubai and UAE merchants: homepage, product and collection pages, mobile optimization, and brand-aligned design. Salla theme customization done right from Dubai.",
         },
         {
-          title: "Salla App Development",
+          title: "Salla App Development UAE",
           description:
-            "We develop custom features, business tools, and app-style experiences for Salla merchants who need more than the standard setup. This can include workflow automation, advanced store functionality, integrations, and custom ecommerce tools.",
+            "Custom Salla apps and features for UAE and GCC merchants: workflow automation, advanced functionality, and integrations. Salla app development by a Dubai-based team that knows the platform.",
         },
         {
-          title: "Salla Integrations",
+          title: "Salla Integrations Dubai & GCC",
           description:
-            "We connect Salla with your business systems, internal workflows, and third-party tools where needed. This includes integration planning, operational automation, and technical implementation to improve efficiency and reduce repetitive manual work.",
+            "Connect Salla to your ERP, CRM, and tools. We plan and build Salla integrations for Dubai and Gulf businesses to cut manual work and streamline operations.",
         },
         {
-          title: "Salla Support & Ongoing Improvements",
+          title: "Salla Support & Maintenance Dubai",
           description:
-            "We provide ongoing support for merchants who need continuous improvements, bug fixing, feature updates, technical troubleshooting, and a reliable development partner to support growth after launch.",
+            "Ongoing Salla support from Dubai: updates, bug fixes, new features, and a reliable Salla development partner for UAE and GCC brands after launch.",
         },
       ],
     },
     why: {
-      heading: "Why Businesses Choose SouqFlow",
+      heading: "Why Dubai & UAE Brands Choose SouqFlow for Salla",
       items: [
         {
-          title: "Focused on Salla",
+          title: "Salla-Only Focus",
           description:
-            "We are building SouqFlow specifically around the Salla ecosystem, which means our positioning, service model, and development approach are focused on what Salla merchants actually need.",
+            "We are a Salla specialist agency in Dubai. Everything we do—store development, redesign, themes, apps, integrations—is built around what Salla merchants in the UAE and GCC actually need.",
         },
         {
-          title: "Built for UAE and GCC Ecommerce",
+          title: "Based in Dubai, Built for UAE & GCC",
           description:
-            "We understand regional ecommerce requirements including bilingual storefront expectations, localized customer journeys, and practical support for businesses selling in the Gulf market.",
+            "Our team is in Dubai. We understand UAE and Gulf ecommerce: Arabic–English stores, local payments, Saudi and UAE shipping, and the expectations of Dubai and GCC shoppers.",
         },
         {
-          title: "Design + Development Thinking",
+          title: "Design + Development in One Place",
           description:
-            "We do not just set up stores. We think about customer experience, structure, branding, technical setup, and scalability together.",
+            "We combine Salla development and design under one roof in Dubai. You get a store that looks premium and is built to convert and scale.",
         },
         {
-          title: "Long-Term Technical Partner",
+          title: "Long-Term Salla Partner in Dubai",
           description:
-            "We aim to support businesses not only at launch, but also through ongoing improvements, custom features, and growth-related development.",
+            "We support you at launch and beyond. Many Dubai and UAE brands use us as their ongoing Salla development and support partner.",
         },
       ],
     },
     process: {
-      heading: "Our Process",
+      heading: "How We Deliver Salla Projects in Dubai & UAE",
       steps: [
         {
           title: "Discovery",
           description:
-            "We understand your brand, products, goals, and technical requirements before planning the best Salla setup for your business.",
+            "We learn your brand, products, and goals so we can plan the right Salla store or redesign for your Dubai or UAE business.",
         },
         {
           title: "Structure & UX Planning",
           description:
-            "We map out the store structure, customer journey, content blocks, and user experience with a focus on clarity and conversion.",
+            "We define store structure, customer journey, and content so your Salla store is clear and conversion-focused for UAE and GCC shoppers.",
         },
         {
           title: "Design & Development",
           description:
-            "We customize your store, implement required features, optimize the mobile experience, and prepare the full storefront for launch.",
+            "We build and customize your Salla store in Dubai: theme, features, mobile optimization, and launch-ready storefront.",
         },
         {
           title: "Testing & Launch",
           description:
-            "We test store flow, content, responsiveness, and important customer interactions before launch.",
-        },
-        {
-          title: "Support & Growth",
-          description:
-            "After launch, we can continue supporting your store with updates, improvements, and new features.",
+            "We test flows, content, and responsiveness so your Salla store is ready for Dubai, UAE, and GCC customers.",
         },
       ],
     },
     examples: {
-      heading: "What We Can Help You Build on Salla",
+      heading: "Salla Projects We Build for Dubai & UAE Brands",
       items: [
         {
-          title: "Branded Ecommerce Store",
+          title: "Branded Salla Store for Dubai Brands",
           description:
-            "A custom Salla storefront for a fashion, beauty, lifestyle, or retail brand that needs a stronger visual identity and better shopping experience.",
+            "Custom Salla storefronts for fashion, beauty, and retail brands in Dubai and the UAE—strong identity and a premium shopping experience.",
         },
         {
-          title: "Redesign for Better Conversion",
+          title: "Salla Redesign for Higher Conversion",
           description:
-            "A redesign project for an existing Salla store that needs a cleaner customer journey, stronger mobile UX, and a more premium look.",
+            "Redesign of existing Salla stores for Dubai and GCC merchants: clearer journey, better mobile UX, and a more premium look.",
         },
         {
-          title: "Feature-Rich Merchant Setup",
+          title: "Advanced Salla Store Setup",
           description:
-            "A Salla store with advanced sections, custom content experiences, workflow enhancements, and operational improvements.",
+            "Salla stores with custom sections, workflows, and integrations for UAE and Gulf brands that need more than the basics.",
         },
         {
-          title: "Ongoing Technical Support",
+          title: "Ongoing Salla Support Dubai",
           description:
-            "A monthly support setup for growing brands that need a dependable partner for updates, fixes, and continuous store improvements.",
+            "Monthly Salla support for Dubai and UAE brands: updates, fixes, and continuous improvements from a local partner.",
         },
       ],
     },
     industries: {
-      heading: "Industries We Commonly Support",
+      heading: "Industries We Serve – Dubai, UAE & GCC",
       list: [
         "Fashion and Apparel",
         "Beauty and Skincare",
@@ -211,42 +205,42 @@ const content = {
         "Specialty Ecommerce Brands",
       ],
       paragraph:
-        "If your business is selling online in the UAE or GCC and wants a more professional Salla store, we can help you create a storefront that looks better, works better, and supports long-term growth.",
+        "Selling online in Dubai, UAE, or the GCC? We help you get a professional Salla store: better design, better UX, and long-term growth. Contact the leading Salla developer in Dubai.",
     },
     faq: {
-      heading: "Frequently Asked Questions",
+      heading: "Salla Developer Dubai – FAQ",
       items: [
         {
-          question: "Do you only work on Salla?",
+          question: "Are you a Salla-only agency in Dubai?",
           answer:
-            "SouqFlow is focused on the Salla ecosystem for this brand, with services built specifically around Salla store development, customization, and support.",
+            "Yes. SouqFlow is a Salla specialist in Dubai. We do Salla store development, Salla redesign, Salla theme customization, Salla app development, Salla integrations, and Salla support for UAE and GCC brands.",
         },
         {
-          question: "Can you redesign an existing Salla store?",
+          question: "Can you redesign our existing Salla store?",
           answer:
-            "Yes. We can improve the design, structure, mobile experience, content flow, and overall customer journey of an existing Salla store.",
+            "Yes. We redesign Salla stores for Dubai and UAE brands: better design, structure, mobile experience, and customer journey for higher conversion.",
         },
         {
-          question: "Do you help with custom features and integrations?",
+          question: "Do you do custom Salla features and integrations?",
           answer:
-            "Yes. We support custom functionality, workflow enhancements, and integration-related work where required for the business.",
+            "Yes. We build custom Salla features, workflows, and integrations for Dubai and GCC merchants—ERP, CRM, and other tools connected to Salla.",
         },
         {
-          question: "Do you offer ongoing support after launch?",
+          question: "Do you offer Salla support after launch?",
           answer:
-            "Yes. We can continue supporting your Salla store with updates, fixes, technical help, and future improvements.",
+            "Yes. We provide ongoing Salla support from Dubai: updates, bug fixes, new features, and technical help for UAE and GCC stores.",
         },
         {
-          question: "Do you work with UAE and Saudi businesses?",
+          question: "Do you work with brands in Dubai, UAE, and Saudi?",
           answer:
-            "Yes. We are based in Dubai and aim to support brands across the UAE, Saudi Arabia, and the wider GCC.",
+            "Yes. We are based in Dubai and work with brands across Dubai, the UAE, Saudi Arabia, and the wider GCC. We’re your Salla developer in Dubai and the Gulf.",
         },
       ],
     },
     form: {
-      heading: "Let’s Build Your Salla Store",
+      heading: "Get Your Salla Store Built in Dubai – Get a Quote",
       body:
-        "Tell us about your business, your store, and what you need help with. We’ll review your requirements and get back to you.",
+        "Tell us about your business and what you need: new Salla store, redesign, theme work, integrations, or support. We’ll reply from Dubai within 24 hours.",
       note: "We usually respond within 24 hours.",
       fields: {
         name: "Name",
@@ -260,8 +254,8 @@ const content = {
       secondary: "Prefer WhatsApp? Chat with us directly.",
     },
     footer: {
-      intro: "SouqFlow – Salla Development in Dubai for UAE and GCC Brands",
-      tagline: "Your Salla development partner in Dubai. We build, customize, and support stores for UAE and GCC brands.",
+      intro: "SouqFlow – #1 Salla Developer Dubai · Salla Store Development UAE & GCC",
+      tagline: "Leading Salla development agency in Dubai. We build, redesign, and support Salla stores for brands across Dubai, UAE, Saudi Arabia, and the GCC.",
       servicesHeading: "Services",
       contactHeading: "Contact",
       services: [
@@ -276,7 +270,7 @@ const content = {
       phoneLabel: "Phone",
       whatsappLabel: "WhatsApp",
     },
-    whatsappBubble: "Hi, I’m interested in Salla development for my business.",
+    whatsappBubble: "Hi, I need a Salla developer in Dubai for my store. Can you help?",
   },
   ar: {
     nav: {
@@ -287,139 +281,134 @@ const content = {
       contact: "تواصل",
     },
     hero: {
-      badge: "شريك سلة في الإمارات والخليج",
-      title: "شريك تطوير متاجر سلة في دبي للعلامات التجارية المتنامية في الخليج",
+      badge: "أفضل مطور سلة في دبي · الإمارات والخليج",
+      title: "مطور متاجر سلة في دبي – تطوير، إعادة تصميم ودعم متاجر سلة للإمارات والخليج",
       subtitle:
-        "نقوم ببناء وتخصيص وتطوير متاجر سلة مع تصميم حديث، تكاملات متقدمة، مزايا مخصصة، ودعم فني مستمر للشركات في الإمارات ودول الخليج.",
+        "استوديو تطوير متاجر سلة مقره دبي. نبنى ونصمم وندعم متاجر سلة للعلامات في دبي والإمارات والسعودية والخليج. قوالب مخصصة، تكاملات، تطبيقات سلة ودعم فني مستمر من دبي.",
       primaryCta: "ابدأ مشروعك",
       secondaryCta: "تواصل عبر واتساب",
-      trust: ["مقرنا دبي، الإمارات", "دعم باللغتين", "حلول مخصصة للتجارة الإلكترونية في الخليج"],
+      trust: ["مقرنا دبي · الإمارات", "متخصصون في سلة", "تجارة إلكترونية الإمارات والخليج"],
     },
     trustIntro: {
-      heading: "خدمات متخصصة في تطوير متاجر سلة للشركات الجادة",
+      heading: "وكالة تطوير متاجر سلة في دبي للعلامات في الإمارات والخليج",
       body: [
-        "تساعد SouqFlow العلامات التجارية على إطلاق وتنمية متاجرها على منصة سلة مع التركيز على الأداء، جودة التصميم، الخصائص المخصصة، والكفاءة التشغيلية. سواء كنت تحتاج إلى متجر جديد، إعادة تصميم، خصائص متقدمة، تكاملات، أو دعم فني مستمر، فنحن نساعدك على بناء متجر سلة جاهز للنمو الحقيقي.",
-        "نحن نؤمن أن شركات التجارة الإلكترونية في الخليج تحتاج إلى أكثر من مجرد إعداد أساسي. تحتاج إلى واجهات سريعة، تجربة مستخدم واضحة، تجربة محلية مناسبة، دعم فني قوي، وتكاملات تقلل العمل اليدوي. وهنا يأتي دورنا.",
+        "SouqFlow استوديو تطوير متاجر سلة مقره دبي، نساعد العلامات في الإمارات والسعودية والخليج على إطلاق وتنمية متاجرها على سلة. نركّز على تطوير متجر سلة، إعادة تصميم متجر سلة، تخصيص قوالب سلة، تطوير تطبيقات سلة وتكاملات سلة—ليكون متجرك في دبي أو الخليج جاهزاً للأداء والتحويل.",
+        "علامات التجارة الإلكترونية في دبي والخليج تحتاج أكثر من إعداد سلة أساسي. تحتاج مطور سلة في دبي: متاجر سريعة، واجهة عربية–إنجليزية، دفع وشحن محلي، ودعم سلة موثوق. هذا ما نقدمه من مكتبنا في دبي.",
       ],
-      strip: ["تطوير متاجر سلة", "شريك سلة في الإمارات", "مطور سلة في دبي", "حلول سلة للتجارة الإلكترونية"],
+      strip: ["مطور سلة دبي", "تطوير متجر سلة الإمارات", "شريك سلة دبي", "متجر سلة دبي"],
     },
     services: {
-      heading: "خدماتنا في سلة",
+      heading: "خدمات تطوير سلة في دبي – ما نقدمه",
       items: [
         {
-          title: "تطوير متجر سلة",
+          title: "تطوير متجر سلة في دبي",
           description:
-            "نقوم ببناء متاجر سلة مخصصة للشركات التي تطلق مشروع تجارة إلكترونية جديد أو ترغب في الانتقال إلى إعداد أكثر احترافية وقابلية للتوسع. يشمل ذلك هيكلة المتجر، التوجيه البصري للعلامة التجارية، تصميم الصفحات، إعداد الخصائص، تجهيز وسائل الدفع والشحن، ودعم الإطلاق الكامل.",
+            "تطوير متجر سلة كامل لعلامات دبي والإمارات: هيكلة المتجر، تصميم العلامة التجارية، الصفحات، الدفع والشحن ودعم الإطلاق. مطور سلة في دبي لمتاجر التجارة الإلكترونية الجديدة.",
         },
         {
-          title: "إعادة تصميم متجر سلة",
+          title: "إعادة تصميم متجر سلة للإمارات والخليج",
           description:
-            "إذا كان متجرك الحالي على سلة يبدو قديماً أو لا يحقق النتائج المطلوبة، فنحن نعيد تصميم تجربة المستخدم، نحسن عرض المتجر، ونبني رحلة شراء أكثر احترافية وثقة وتحويلاً.",
+            "إعادة تصميم متجر سلة الحالي لتحسين التحويل. نحسن تجربة المستخدم والجوال والمظهر ليبدو متجرك على سلة في دبي أو الخليج كعلامة احترافية.",
         },
         {
-          title: "تخصيص قوالب سلة",
+          title: "تخصيص قوالب سلة في دبي",
           description:
-            "نقوم بتخصيص قوالب سلة لتتناسب مع هوية علامتك التجارية، وتحسين سهولة الاستخدام، وتقديم تجربة تسوق أكثر احترافية. يشمل ذلك الصفحة الرئيسية، صفحات المنتجات، صفحات الأقسام، تحسين تجربة الجوال، وإضافات تصميم مخصصة.",
+            "تخصيص قوالب سلة لتجار دبي والإمارات: الصفحة الرئيسية، صفحات المنتجات والأقسام، تحسين الجوال والتصميم. تخصيص قوالب سلة من دبي.",
         },
         {
-          title: "تطوير تطبيقات وخصائص مخصصة لسلة",
+          title: "تطوير تطبيقات سلة في الإمارات",
           description:
-            "نقوم بتطوير خصائص مخصصة وأدوات أعمال وتجارب متقدمة لتجار سلة الذين يحتاجون إلى أكثر من الإعداد التقليدي. ويشمل ذلك الأتمتة، الخصائص المتقدمة، التكاملات، وأدوات التجارة الإلكترونية المخصصة.",
+            "تطبيقات وخصائص سلة مخصصة لتجار الإمارات والخليج: أتمتة، وظائف متقدمة وتكاملات. تطوير تطبيقات سلة من فريق مقره دبي.",
         },
         {
-          title: "تكاملات سلة",
+          title: "تكاملات سلة في دبي والخليج",
           description:
-            "نربط منصة سلة بأنظمتك الداخلية، سير العمل في شركتك، والأدوات الخارجية عند الحاجة. يشمل ذلك تخطيط التكامل، أتمتة العمليات، والتنفيذ التقني لتحسين الكفاءة وتقليل العمل اليدوي المتكرر.",
+            "ربط سلة بأنظمتك وبرامجك وأدواتك. نخطط وننفذ تكاملات سلة لشركات دبي والخليج لتقليل العمل اليدوي وتبسيط العمليات.",
         },
         {
-          title: "الدعم المستمر وتحسين المتجر",
+          title: "دعم وصيانة متجر سلة من دبي",
           description:
-            "نوفر دعماً مستمراً للمتاجر التي تحتاج إلى تحسينات متواصلة، إصلاحات، تحديثات للخصائص، معالجة المشاكل التقنية، وشريك تطوير موثوق لدعم النمو بعد الإطلاق.",
+            "دعم سلة مستمر من دبي: تحديثات، إصلاحات، مزايا جديدة وشريك تطوير سلة موثوق لعلامات الإمارات والخليج بعد الإطلاق.",
         },
       ],
     },
     why: {
-      heading: "لماذا تختار الشركات SouqFlow",
+      heading: "لماذا تختار علامات دبي والإمارات SouqFlow لمتاجر سلة",
       items: [
         {
-          title: "تركيز كامل على سلة",
+          title: "متخصصون في سلة فقط",
           description:
-            "نقوم ببناء SouqFlow خصيصاً حول منظومة سلة، لذلك فإن خدماتنا وطريقة عملنا موجهة لما يحتاجه تجار سلة فعلياً.",
+            "نحن وكالة متخصصة في سلة ومقرها دبي. كل ما نقدمه—تطوير متجر سلة، إعادة تصميم، قوالب، تطبيقات، تكاملات—مبني على ما يحتاجه تجار سلة في الإمارات والخليج.",
         },
         {
-          title: "حلول مناسبة للإمارات والخليج",
+          title: "مقرنا دبي، ونبني للإمارات والخليج",
           description:
-            "نفهم متطلبات التجارة الإلكترونية في المنطقة، بما في ذلك توقعات المتاجر الثنائية اللغة، وتجربة العميل المحلية، والدعم المناسب للشركات التي تبيع في الخليج.",
+            "فريقنا في دبي. نفهم تجارة الإلكترونية في الإمارات والخليج: متاجر عربية–إنجليزية، دفع محلي، شحن السعودية والإمارات، وتوقعات متسوقي دبي والخليج.",
         },
         {
-          title: "تفكير يجمع بين التصميم والتطوير",
+          title: "تصميم وتطوير تحت سقف واحد",
           description:
-            "نحن لا نقوم بإعداد المتجر فقط، بل نفكر في تجربة المستخدم، والهيكلة، والهوية البصرية، والإعداد التقني، وقابلية التوسع بشكل متكامل.",
+            "نجمع تطوير سلة والتصميم في مكان واحد في دبي. تحصل على متجر يبدو احترافياً ومبني للتحويل والنمو.",
         },
         {
-          title: "شريك تقني طويل المدى",
+          title: "شريك سلة طويل المدى في دبي",
           description:
-            "هدفنا ليس فقط إطلاق المتجر، بل دعمه على المدى الطويل من خلال التحسينات المستمرة والخصائص الجديدة والتطوير المرتبط بالنمو.",
+            "ندعمك عند الإطلاق وما بعد. كثير من علامات دبي والإمارات يعتمدوننا كشريك تطوير ودعم سلة مستمر.",
         },
       ],
     },
     process: {
-      heading: "طريقة عملنا",
+      heading: "كيف ننفذ مشاريع سلة في دبي والإمارات",
       steps: [
         {
           title: "الاكتشاف",
           description:
-            "نفهم علامتك التجارية، منتجاتك، أهدافك، واحتياجاتك التقنية قبل تحديد أفضل طريقة لبناء متجر سلة مناسب لك.",
+            "نتعرّف على علامتك ومنتجاتك وأهدافك لتخطيط متجر سلة أو إعادة تصميم مناسبة لعملك في دبي أو الإمارات.",
         },
         {
           title: "التخطيط وتجربة المستخدم",
           description:
-            "نرسم هيكلة المتجر، رحلة العميل، المحتوى، وتجربة الاستخدام مع التركيز على الوضوح والتحويل.",
+            "نحدد هيكلة المتجر ورحلة العميل والمحتوى ليصبح متجر سلة واضحاً ومركّزاً على التحويل لمتسوقي الإمارات والخليج.",
         },
         {
           title: "التصميم والتطوير",
           description:
-            "نخصص متجرك، نطبق الخصائص المطلوبة، نحسن تجربة الجوال، ونجهز المتجر للإطلاق.",
+            "نبني ونخصص متجر سلة في دبي: القالب، المزايا، تحسين الجوال ومتجر جاهز للإطلاق.",
         },
         {
           title: "الاختبار والإطلاق",
           description:
-            "نختبر تدفق المتجر، المحتوى، سرعة التصفح، وتجربة الشراء قبل الإطلاق.",
-        },
-        {
-          title: "الدعم والنمو",
-          description:
-            "بعد الإطلاق، نستمر في دعم متجرك بالتحديثات والتحسينات والخصائص الجديدة حسب الحاجة.",
+            "نختبر التدفق والمحتوى والاستجابة ليصبح متجر سلة جاهزاً لعملاء دبي والإمارات والخليج.",
         },
       ],
     },
     examples: {
-      heading: "ماذا يمكننا أن نبني لك على سلة",
+      heading: "مشاريع سلة نبنيها لعلامات دبي والإمارات",
       items: [
         {
-          title: "متجر إلكتروني بهوية متكاملة",
+          title: "متجر سلة بعلامة تجارية لعلامات دبي",
           description:
-            "متجر سلة مخصص لعلامات الأزياء أو الجمال أو التجزئة التي تحتاج إلى هوية أقوى وتجربة شراء أفضل.",
+            "متاجر سلة مخصصة لعلامات الأزياء والجمال والتجزئة في دبي والإمارات—هوية قوية وتجربة شراء احترافية.",
         },
         {
-          title: "إعادة تصميم لتحسين التحويل",
+          title: "إعادة تصميم متجر سلة لتحسين التحويل",
           description:
-            "مشروع إعادة تصميم لمتجر قائم على سلة يحتاج إلى رحلة عميل أوضح وتجربة جوال أقوى وشكل أكثر احترافية.",
+            "إعادة تصميم متاجر سلة قائمة لعلامات دبي والخليج: رحلة أوضح، تجربة جوال أفضل ومظهر أكثر احترافية.",
         },
         {
-          title: "متجر بخصائص متقدمة",
+          title: "إعداد متجر سلة متقدم",
           description:
-            "متجر سلة يحتوي على أقسام متقدمة وتجارب محتوى مخصصة وتحسينات تشغيلية وخصائص إضافية.",
+            "متاجر سلة بأقسام مخصصة وسير عمل وتكاملات لعلامات الإمارات والخليج التي تحتاج أكثر من الأساسيات.",
         },
         {
-          title: "دعم تقني مستمر",
+          title: "دعم سلة مستمر من دبي",
           description:
-            "خطة دعم شهرية للعلامات التجارية التي تحتاج إلى شريك يعتمد عليه للتحديثات، الإصلاحات، والتحسينات المستمرة.",
+            "دعم سلة شهري لعلامات دبي والإمارات: تحديثات، إصلاحات وتحسينات مستمرة من شريك محلي.",
         },
       ],
     },
     industries: {
-      heading: "القطاعات التي نخدمها",
+      heading: "القطاعات التي نخدمها – دبي، الإمارات والخليج",
       list: [
         "الأزياء والملابس",
         "الجمال والعناية",
@@ -431,41 +420,41 @@ const content = {
         "المتاجر المتخصصة",
       ],
       paragraph:
-        "إذا كنت تدير مشروع تجارة إلكترونية في الإمارات أو الخليج وتريد متجر سلة أكثر احترافية، فنحن نستطيع مساعدتك في بناء متجر يبدو أفضل ويعمل بشكل أفضل ويدعم نموك على المدى الطويل.",
+        "تبيع أونلاين في دبي أو الإمارات أو الخليج؟ نساعدك في الحصول على متجر سلة احترافي: تصميم أفضل، تجربة أفضل ونمو طويل المدى. تواصل مع أفضل مطور سلة في دبي.",
     },
     faq: {
-      heading: "الأسئلة الشائعة",
+      heading: "مطور سلة دبي – الأسئلة الشائعة",
       items: [
         {
-          question: "هل تعملون فقط على سلة؟",
+          question: "هل أنتم وكالة متخصصة في سلة فقط في دبي؟",
           answer:
-            "نعم، يتمحور هذا الموقع والخدمات تحت SouqFlow حول تطوير وتخصيص ودعم متاجر سلة بشكل أساسي.",
+            "نعم. SouqFlow متخصصون في سلة ومقرنا دبي. نقدم تطوير متجر سلة، إعادة تصميم متجر سلة، تخصيص قوالب سلة، تطوير تطبيقات سلة، تكاملات سلة ودعم سلة لعلامات الإمارات والخليج.",
         },
         {
-          question: "هل يمكنكم إعادة تصميم متجر سلة قائم؟",
+          question: "هل يمكنكم إعادة تصميم متجر سلة الحالي؟",
           answer:
-            "نعم، يمكننا تحسين التصميم، الهيكلة، تجربة الجوال، طريقة عرض المحتوى، وتجربة المستخدم لمتجرك الحالي.",
+            "نعم. نعيد تصميم متاجر سلة لعلامات دبي والإمارات: تصميم أفضل، هيكلة، تجربة جوال ورحلة عميل لتحويل أعلى.",
         },
         {
-          question: "هل تقدمون خصائص مخصصة وتكاملات؟",
+          question: "هل تقدمون مزايا وتكاملات سلة مخصصة؟",
           answer:
-            "نعم، ندعم تطوير الخصائص المخصصة والتحسينات التشغيلية وأعمال التكامل عند الحاجة.",
+            "نعم. نبني مزايا سلة مخصصة وسير عمل وتكاملات لتجار دبي والخليج—ربط ERP وCRM وأدوات أخرى بسلة.",
         },
         {
-          question: "هل تقدمون دعماً مستمراً بعد الإطلاق؟",
+          question: "هل تقدمون دعم سلة بعد الإطلاق؟",
           answer:
-            "نعم، يمكننا دعم متجرك بشكل مستمر من خلال التحديثات والإصلاحات والتحسينات المستقبلية.",
+            "نعم. نقدم دعم سلة مستمراً من دبي: تحديثات، إصلاحات، مزايا جديدة ومساعدة تقنية لمتاجر الإمارات والخليج.",
         },
         {
-          question: "هل تعملون مع شركات في الإمارات والسعودية؟",
+          question: "هل تعملون مع علامات في دبي والإمارات والسعودية؟",
           answer:
-            "نعم، نحن مقرنا دبي ونستهدف دعم العلامات التجارية في الإمارات والسعودية ودول الخليج.",
+            "نعم. مقرنا دبي ونعمل مع علامات في دبي والإمارات والسعودية والخليج. نحن مطور سلة في دبي والخليج.",
         },
       ],
     },
     form: {
-      heading: "لنبدأ تطوير متجر سلة الخاص بك",
-      body: "أخبرنا عن نشاطك التجاري ومتجرك واحتياجاتك، وسنراجع التفاصيل ونتواصل معك.",
+      heading: "ابنِ متجر سلة في دبي – احصل على عرض",
+      body: "أخبرنا عن نشاطك وما تحتاجه: متجر سلة جديد، إعادة تصميم، قوالب، تكاملات أو دعم. سنرد من دبي خلال 24 ساعة.",
       note: "عادة ما نرد خلال 24 ساعة.",
       fields: {
         name: "الاسم",
@@ -479,8 +468,8 @@ const content = {
       secondary: "تفضل واتساب؟ تواصل معنا مباشرة.",
     },
     footer: {
-      intro: "SouqFlow – تطوير متاجر سلة في دبي للشركات في الإمارات والخليج",
-      tagline: "شريكك في تطوير متاجر سلة في دبي. نبنى ونخصص وندعم المتاجر لعلامات الإمارات والخليج.",
+      intro: "SouqFlow – أفضل مطور سلة في دبي · تطوير متاجر سلة الإمارات والخليج",
+      tagline: "وكالة تطوير سلة رائدة في دبي. نبنى ونصمم وندعم متاجر سلة لعلامات دبي والإمارات والسعودية والخليج.",
       servicesHeading: "الخدمات",
       contactHeading: "تواصل معنا",
       services: [
@@ -495,7 +484,7 @@ const content = {
       phoneLabel: "الهاتف",
       whatsappLabel: "واتساب",
     },
-    whatsappBubble: "مرحباً، أنا مهتم بخدمات تطوير متجر سلة لمشروعي.",
+    whatsappBubble: "مرحباً، أحتاج مطور سلة في دبي لمتجري. هل يمكنكم المساعدة؟",
   },
 } as const;
 
@@ -893,7 +882,7 @@ export default function Home() {
               </p>
             </div>
             <span className="text-sm text-slate-400">
-              From discovery to launch and support.
+              Salla projects in Dubai & UAE, start to finish.
             </span>
           </div>
 
@@ -959,7 +948,7 @@ export default function Home() {
               {t.examples.heading}
             </h2>
             <p className="max-w-xl text-base text-slate-400 md:text-lg">
-              We help GCC brands translate strategy into Salla storefronts that look premium, feel
+              We help Dubai and UAE brands turn strategy into Salla storefronts that look premium, feel
               fast, and convert consistently.
             </p>
           </div>
@@ -1065,12 +1054,12 @@ export default function Home() {
                 {t.faq.heading}
               </h2>
               <p className="max-w-xl text-base text-slate-400 md:text-lg">
-                Clear answers about how we partner with Salla merchants across Dubai, UAE, Saudi
+                FAQ: Salla developer Dubai, store development UAE, redesign & support
                 Arabia, and the wider GCC.
               </p>
             </div>
             <span className="rounded-full bg-slate-900/80 px-4 py-2 text-sm text-slate-300">
-              Salla development · Salla store redesign · Salla support
+              Salla developer Dubai · Salla store development UAE · Salla support
             </span>
           </div>
 
