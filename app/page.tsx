@@ -1,9 +1,59 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  Store,
+  Palette,
+  Layout,
+  Code2,
+  Plug,
+  Headphones,
+  Search,
+  LayoutDashboard,
+  TestTube,
+  TrendingUp,
+  Target,
+  Globe,
+  Handshake,
+  RefreshCw,
+  Box,
+  Mail,
+  Phone,
+  MessageCircle,
+  MapPin,
+  ChevronDown,
+  Shirt,
+  Sparkles,
+  UtensilsCrossed,
+  Heart,
+  ShoppingBag,
+  Activity,
+  Home as HomeIcon,
+  Zap,
+  Shield,
+  Layers,
+} from "lucide-react";
 
 type Language = "en" | "ar";
+
+const SERVICE_ICONS = [Store, Palette, Layout, Code2, Plug, Headphones] as const;
+const PROCESS_ICONS = [Search, LayoutDashboard, Code2, TestTube, TrendingUp] as const;
+const WHY_ICONS = [Target, Globe, Palette, Handshake] as const;
+const EXAMPLE_ICONS = [Store, RefreshCw, Box, Headphones] as const;
+const INDUSTRY_ICONS = [Shirt, Sparkles, UtensilsCrossed, Heart, ShoppingBag, Activity, HomeIcon, Store] as const;
+
+const FORM_EMAIL = "hello@clickodigital.com";
+
+const HERO_RIGHT_ICONS = [
+  { Icon: Store, label: "Salla stores", color: "from-teal-400/20 to-cyan-400/10" },
+  { Icon: Globe, label: "UAE & GCC", color: "from-cyan-400/20 to-blue-400/10" },
+  { Icon: Zap, label: "Fast launch", color: "from-emerald-400/20 to-teal-400/10" },
+  { Icon: Shield, label: "Support", color: "from-teal-400/20 to-emerald-400/10" },
+  { Icon: Layers, label: "Integrations", color: "from-cyan-400/20 to-teal-400/10" },
+  { Icon: Code2, label: "Custom dev", color: "from-emerald-400/20 to-cyan-400/10" },
+] as const;
 
 const whatsappNumber = "971563551010"; // +971 56 355 1010
 
@@ -211,6 +261,7 @@ const content = {
     },
     footer: {
       intro: "SouqFlow – Salla Development in Dubai for UAE and GCC Brands",
+      tagline: "Your Salla development partner in Dubai. We build, customize, and support stores for UAE and GCC brands.",
       servicesHeading: "Services",
       contactHeading: "Contact",
       services: [
@@ -429,6 +480,7 @@ const content = {
     },
     footer: {
       intro: "SouqFlow – تطوير متاجر سلة في دبي للشركات في الإمارات والخليج",
+      tagline: "شريكك في تطوير متاجر سلة في دبي. نبنى ونخصص وندعم المتاجر لعلامات الإمارات والخليج.",
       servicesHeading: "الخدمات",
       contactHeading: "تواصل معنا",
       services: [
@@ -466,9 +518,12 @@ const cardVariants = {
   }),
 };
 
+type FormStatus = "idle" | "submitting" | "success" | "error";
+
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [activeFaqIndex, setActiveFaqIndex] = useState<number | null>(0);
+  const [formStatus, setFormStatus] = useState<FormStatus>("idle");
 
   const t = useMemo(() => content[language], [language]);
   const dir = language === "ar" ? "rtl" : "ltr";
@@ -497,21 +552,11 @@ export default function Home() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="glass-panel flex w-full max-w-6xl items-center justify-between rounded-2xl border border-slate-700/60 bg-slate-900/80 px-4 py-2.5 backdrop-blur-md lg:px-6"
         >
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 text-xs font-semibold tracking-tight text-slate-950 shadow-lg shadow-teal-500/40">
-              SF
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold tracking-tight text-slate-50">
-                SouqFlow
-              </span>
-              <span className="text-[11px] font-medium text-slate-400">
-                Salla Development Studio
-              </span>
-            </div>
-          </div>
+          <a href="#" onClick={(e) => { e.preventDefault(); handleScrollTo("hero"); }} className="flex items-center gap-2">
+            <Image src="/souqflow-logo.png" alt="SouqFlow" width={140} height={36} className="h-9 w-auto object-contain" priority />
+          </a>
 
-          <nav className="hidden items-center gap-6 text-xs font-medium text-slate-300 md:flex">
+          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
             <button
               className="transition-colors hover:text-teal-300"
               onClick={() => handleScrollTo("hero")}
@@ -546,13 +591,13 @@ export default function Home() {
 
           <div className="flex items-center gap-2">
             <div
-              className="flex items-center rounded-full bg-slate-800/80 p-0.5 text-[11px] font-medium text-slate-300 ring-1 ring-slate-600/80"
+              className="flex items-center rounded-full bg-slate-800/80 p-0.5 text-xs font-medium text-slate-300 ring-1 ring-slate-600/80"
               aria-label="Language switcher"
             >
               <button
                 type="button"
                 onClick={() => setLanguage("en")}
-                className={`flex items-center gap-1 rounded-full px-2.5 py-1 transition ${
+                className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition ${
                   language === "en" ? "bg-slate-50 text-slate-950 shadow-sm" : "hover:text-teal-200"
                 }`}
               >
@@ -561,7 +606,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setLanguage("ar")}
-                className={`flex items-center gap-1 rounded-full px-2.5 py-1 transition ${
+                className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition ${
                   language === "ar" ? "bg-slate-50 text-slate-950 shadow-sm" : "hover:text-teal-200"
                 }`}
               >
@@ -571,7 +616,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => handleScrollTo("contact")}
-              className="hidden items-center gap-1.5 rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 px-3 py-1.5 text-xs font-semibold text-slate-950 shadow-lg shadow-teal-500/40 transition hover:scale-[1.02] hover:shadow-teal-400/60 md:inline-flex"
+              className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-teal-500/40 transition hover:scale-[1.02] hover:shadow-teal-400/60 md:inline-flex"
             >
               {language === "en" ? "Start Project" : "ابدأ المشروع"}
             </button>
@@ -587,33 +632,33 @@ export default function Home() {
 
         <section
           id="hero"
-          className="relative grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-center"
+          className="relative flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between"
         >
           <motion.div
             initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-8"
+            className="max-w-2xl space-y-8"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-slate-900/70 px-3 py-1 text-[11px] font-medium text-teal-200 shadow-sm shadow-teal-500/40 backdrop-blur">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-teal-400" />
-              <span className="uppercase tracking-[0.16em]">{t.hero.badge}</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-slate-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-teal-200 shadow-sm shadow-teal-500/40 backdrop-blur">
+              <span className="inline-block h-2 w-2 rounded-full bg-teal-400" />
+              {t.hero.badge}
             </div>
 
-            <div className="space-y-5">
-              <h1 className="max-w-xl text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl sm:leading-tight lg:text-[2.65rem]">
+            <div className="space-y-6">
+              <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-slate-50 sm:text-5xl sm:leading-tight lg:text-5xl lg:leading-tight">
                 {t.hero.title}
               </h1>
-              <p className="max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              <p className="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
                 {t.hero.subtitle}
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={() => handleScrollTo("contact")}
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-teal-500/40 transition hover:scale-[1.02] hover:shadow-teal-300/70"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/40 transition hover:scale-[1.02] hover:shadow-teal-300/70"
               >
                 {t.hero.primaryCta}
               </button>
@@ -621,19 +666,20 @@ export default function Home() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-teal-400/60 bg-slate-900/40 px-4 py-2.5 text-xs font-semibold text-teal-200 shadow-sm shadow-teal-500/30 transition hover:border-teal-300 hover:bg-slate-900/80"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-400/60 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-teal-200 shadow-sm shadow-teal-500/30 transition hover:border-teal-300 hover:bg-slate-900/80"
               >
+                <MessageCircle className="h-4 w-4" />
                 {t.hero.secondaryCta}
               </a>
             </div>
 
-            <div className="flex flex-wrap gap-2 text-[11px] text-slate-300">
+            <div className="flex flex-wrap gap-3 text-sm text-slate-300">
               {t.hero.trust.map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1 rounded-full border border-slate-700/70 bg-slate-900/60 px-3 py-1"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/60 px-4 py-2"
                 >
-                  <span className="h-1 w-1 rounded-full bg-teal-400" />
+                  <span className="h-2 w-2 rounded-full bg-teal-400" />
                   {item}
                 </span>
               ))}
@@ -641,80 +687,31 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-            className="glass-panel relative overflow-hidden rounded-3xl border border-slate-700/60 p-5 shadow-2xl"
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative hidden lg:block"
           >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(45,212,191,0.15),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(56,189,248,0.15),transparent_55%)] opacity-80" />
-            <div className="relative space-y-5">
-              <div className="flex items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    Salla development overview
-                  </p>
-                  <p className="max-w-[15rem] text-xs text-slate-200">
-                    Salla store development, theme customization, app development, integrations, and
-                    support for GCC ecommerce.
-                  </p>
-                </div>
-                <div className="flex flex-col items-end gap-1 text-right">
-                  <span className="rounded-full bg-emerald-400/15 px-2 py-1 text-[10px] font-semibold text-emerald-300 ring-1 ring-emerald-400/40">
-                    Live in UAE & KSA
-                  </span>
-                  <span className="text-[10px] text-slate-400">SouqFlow · Salla partner</span>
-                </div>
-              </div>
-
-              <div className="grid gap-4 text-[11px] text-slate-200 md:grid-cols-2">
-                <div className="space-y-2 rounded-2xl border border-slate-700/70 bg-slate-900/60 p-3">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    Core focus
-                  </p>
-                  <ul className="space-y-1.5">
-                    <li className="flex items-center gap-1.5">
-                      <span className="h-1 w-1 rounded-full bg-teal-400" />
-                      <span>Salla store development</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <span className="h-1 w-1 rounded-full bg-teal-400" />
-                      <span>Salla theme customization</span>
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <span className="h-1 w-1 rounded-full bg-teal-400" />
-                      <span>Salla app development & integrations</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="space-y-2 rounded-2xl border border-slate-700/70 bg-slate-900/60 p-3">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    Built for
-                  </p>
-                  <ul className="space-y-1.5">
-                    <li className="flex items-center justify-between gap-2">
-                      <span className="text-slate-200">UAE & GCC ecommerce brands</span>
-                      <span className="rounded-full bg-teal-400/10 px-2 py-0.5 text-[10px] text-teal-300">
-                        Priority
-                      </span>
-                    </li>
-                    <li className="flex items-center justify-between gap-2">
-                      <span className="text-slate-200">Arabic + English UX</span>
-                      <span className="text-[10px] text-slate-400">Localized</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between gap-4 text-[10px] text-slate-400">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span>Optimized for conversion & performance</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="h-1 w-8 rounded-full bg-gradient-to-r from-slate-600 via-teal-400 to-emerald-300" />
-                  <span>SouqFlow technology studio</span>
-                </div>
-              </div>
+            <div className="relative grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-teal-500/10 via-transparent to-cyan-500/10 blur-xl" />
+              {HERO_RIGHT_ICONS.map(({ Icon, label, color }, i) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 + i * 0.06 }}
+                  className="relative flex items-center gap-3 rounded-2xl border border-slate-700/80 bg-slate-900/60 p-4 backdrop-blur-sm transition hover:border-teal-400/40 hover:bg-slate-800/60"
+                >
+                  <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${color} ring-1 ring-slate-600/50`}>
+                    <Icon className="h-5 w-5 text-teal-300" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-200">{label}</span>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mt-4 flex items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/50 px-4 py-2.5 text-xs text-slate-400">
+              <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+              Dubai · Saudi · GCC
             </div>
           </motion.div>
         </section>
@@ -725,28 +722,36 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="space-y-6 rounded-3xl border border-slate-800 bg-slate-950/60 px-5 py-6 shadow-[0_16px_55px_rgba(15,23,42,0.9)] ring-1 ring-slate-900/80 md:px-8 md:py-8"
+          className="space-y-8 rounded-3xl border border-slate-800 bg-slate-950/60 px-6 py-8 shadow-[0_16px_55px_rgba(15,23,42,0.9)] ring-1 ring-slate-900/80 md:px-10 md:py-10"
         >
-          <div className="max-w-3xl space-y-3">
-            <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="max-w-3xl space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
               {t.trustIntro.heading}
             </h2>
             {t.trustIntro.body.map((paragraph) => (
-              <p key={paragraph} className="text-xs leading-relaxed text-slate-300 md:text-sm">
+              <p key={paragraph} className="text-base leading-relaxed text-slate-300 md:text-lg">
                 {paragraph}
               </p>
             ))}
           </div>
-          <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
+          <div className="mt-4 flex flex-wrap gap-3 text-sm">
             {t.trustIntro.strip.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-900/80 px-3 py-1 text-slate-200"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/80 px-4 py-2 text-slate-200"
               >
                 <span className="h-3 w-3 rounded-full bg-gradient-to-br from-teal-400 to-cyan-400" />
                 {item}
               </span>
             ))}
+          </div>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <button type="button" onClick={() => handleScrollTo("contact")} className="rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:opacity-90">
+              {t.hero.primaryCta}
+            </button>
+            <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-teal-400/60 px-5 py-2.5 text-sm font-semibold text-teal-200 transition hover:bg-teal-400/10">
+              <MessageCircle className="h-4 w-4" /> {t.hero.secondaryCta}
+            </a>
           </div>
         </motion.section>
 
@@ -758,50 +763,59 @@ export default function Home() {
           viewport={{ once: true, margin: "-80px" }}
           className="space-y-6"
         >
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div className="space-y-2">
-              <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="space-y-3">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
                 {t.services.heading}
               </h2>
-              <p className="max-w-xl text-xs text-slate-400 md:text-sm">
+              <p className="max-w-xl text-base text-slate-400 md:text-lg">
                 Salla store development, Salla theme customization, Salla app development, and
                 integrations built for ecommerce brands in the UAE and GCC.
               </p>
             </div>
-            <span className="rounded-full border border-teal-400/30 bg-slate-900/50 px-3 py-1 text-[11px] font-medium text-teal-200">
+            <span className="rounded-full border border-teal-400/30 bg-slate-900/50 px-4 py-2 text-sm font-medium text-teal-200">
               Salla-focused · Not a generic agency
             </span>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {t.services.items.map((service, index) => (
-              <motion.article
-                key={service.title}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/70 p-4 ring-1 ring-slate-950/90 transition hover:-translate-y-1 hover:border-teal-400/60 hover:ring-teal-500/50"
-              >
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(45,212,191,0.16),transparent_60%)]" />
-                </div>
-                <div className="relative space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-sm font-semibold tracking-tight text-slate-50">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {t.services.items.map((service, index) => {
+              const Icon = SERVICE_ICONS[index];
+              return (
+                <motion.article
+                  key={service.title}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-80px" }}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 ring-1 ring-slate-950/90 transition hover:-translate-y-1 hover:border-teal-400/60 hover:ring-teal-500/50"
+                >
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(45,212,191,0.16),transparent_60%)]" />
+                  </div>
+                  <div className="relative space-y-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400 ring-1 ring-teal-400/20">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <ChevronDown className="h-5 w-5 rotate-[-90deg] text-slate-500 opacity-0 transition group-hover:opacity-100" />
+                    </div>
+                    <h3 className="text-lg font-bold tracking-tight text-slate-50">
                       {service.title}
                     </h3>
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-900/80 text-[10px] text-teal-300 ring-1 ring-slate-700/80">
-                      <span className="h-3 w-3 rounded-full bg-gradient-to-br from-teal-400 to-cyan-400" />
-                    </span>
+                    <p className="text-sm leading-relaxed text-slate-300">
+                      {service.description}
+                    </p>
                   </div>
-                  <p className="text-[11px] leading-relaxed text-slate-300">
-                    {service.description}
-                  </p>
-                </div>
-              </motion.article>
-            ))}
+                </motion.article>
+              );
+            })}
+          </div>
+          <div className="flex justify-center pt-4">
+            <button type="button" onClick={() => handleScrollTo("contact")} className="rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90">
+              {t.hero.primaryCta}
+            </button>
           </div>
         </motion.section>
 
@@ -811,42 +825,52 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid gap-6 rounded-3xl border border-slate-800 bg-slate-950/70 px-5 py-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.2fr)] md:px-8 md:py-8"
+          className="grid gap-8 rounded-3xl border border-slate-800 bg-slate-950/70 px-6 py-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.2fr)] md:px-10 md:py-10"
         >
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
               {t.why.heading}
             </h2>
-            <p className="text-xs text-slate-300 md:text-sm">
+            <p className="text-base text-slate-300 md:text-lg">
               SouqFlow is a Salla-focused ecommerce development partner based in Dubai. We help GCC
               brands build, customize, integrate, and scale Salla stores with a long-term technical
               mindset.
             </p>
-            <p className="text-xs text-slate-400 md:text-sm">
+            <p className="text-base text-slate-400">
               We act as your Salla development partner – not just a one-off implementer – so your
               store can evolve with your business.
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {t.why.items.map((item, index) => (
-              <motion.div
-                key={item.title}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className="space-y-1.5 rounded-2xl border border-slate-800 bg-slate-950/80 p-4"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="h-6 w-6 rounded-full bg-gradient-to-br from-teal-400/80 to-cyan-300/90" />
-                  <h3 className="text-xs font-semibold tracking-tight text-slate-50 md:text-sm">
-                    {item.title}
-                  </h3>
-                </div>
-                <p className="text-[11px] leading-relaxed text-slate-300">{item.description}</p>
-              </motion.div>
-            ))}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {t.why.items.map((item, index) => {
+              const Icon = WHY_ICONS[index];
+              return (
+                <motion.div
+                  key={item.title}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-80px" }}
+                  className="space-y-3 rounded-2xl border border-slate-800 bg-slate-950/80 p-5"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400 ring-1 ring-teal-400/20">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-base font-bold tracking-tight text-slate-50">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+          <div className="flex justify-center pt-6">
+            <button type="button" onClick={() => handleScrollTo("contact")} className="rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90">
+              {t.hero.primaryCta}
+            </button>
           </div>
         </motion.section>
 
@@ -856,49 +880,69 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="space-y-5"
+          className="space-y-8"
         >
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div className="space-y-1.5">
-              <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="space-y-3">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
                 {t.process.heading}
               </h2>
-              <p className="max-w-xl text-xs text-slate-400 md:text-sm">
+              <p className="max-w-xl text-base text-slate-400 md:text-lg">
                 A clear, collaborative process designed for ecommerce teams in the UAE and GCC who
                 need reliable Salla development.
               </p>
             </div>
-            <span className="text-[11px] text-slate-400">
+            <span className="text-sm text-slate-400">
               From discovery to launch and support.
             </span>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 px-4 py-5 md:px-6 md:py-6">
+          <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 px-5 py-8 md:px-8 md:py-10">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(45,212,191,0.12),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.08),transparent_55%)]" />
-            <ol className="relative z-10 grid gap-4 md:grid-cols-5">
-              {t.process.steps.map((step, index) => (
-                <motion.li
-                  key={step.title}
-                  custom={index}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="flex flex-col gap-2 rounded-2xl border border-slate-800/90 bg-slate-950/90 p-3 text-[11px] text-slate-200"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-[10px] font-semibold text-teal-300 ring-1 ring-slate-700">
-                      {index + 1}
-                    </span>
-                    <span className="h-1 flex-1 rounded-full bg-gradient-to-r from-teal-400/70 via-cyan-400/70 to-emerald-400/70" />
-                  </div>
-                  <h3 className="text-[11px] font-semibold tracking-tight text-slate-50">
-                    {step.title}
-                  </h3>
-                  <p className="text-[11px] leading-relaxed text-slate-300">{step.description}</p>
-                </motion.li>
-              ))}
+            <ol className="relative z-10 flex flex-col gap-0 md:flex-row md:items-stretch md:gap-0">
+              {t.process.steps.map((step, index) => {
+                const Icon = PROCESS_ICONS[index];
+                const isLast = index === t.process.steps.length - 1;
+                return (
+                  <motion.li
+                    key={step.title}
+                    custom={index}
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-80px" }}
+                    className="relative flex flex-1 flex-col"
+                  >
+                    <div className="relative flex flex-1 flex-col rounded-2xl border border-slate-800/90 bg-slate-950/90 p-5 transition hover:border-teal-400/30 md:mx-1">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-teal-400/50 bg-teal-500/10 text-teal-400 ring-2 ring-teal-400/20">
+                          <Icon className="h-6 w-6" />
+                        </div>
+                        <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-bold text-teal-300">
+                          Step {index + 1}
+                        </span>
+                      </div>
+                      <h3 className="text-base font-bold tracking-tight text-slate-50 md:text-lg">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-300">
+                        {step.description}
+                      </p>
+                    </div>
+                    {!isLast && (
+                      <div className="hidden shrink-0 items-center px-1 py-4 md:flex md:self-center">
+                        <div className="h-0.5 w-6 rounded-full bg-gradient-to-r from-teal-400/60 to-transparent" />
+                      </div>
+                    )}
+                  </motion.li>
+                );
+              })}
             </ol>
+          </div>
+          <div className="flex justify-center pt-8">
+            <button type="button" onClick={() => handleScrollTo("contact")} className="rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90">
+              {t.hero.primaryCta}
+            </button>
           </div>
         </motion.section>
 
@@ -908,55 +952,56 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="space-y-5"
+          className="space-y-8"
         >
-          <div className="space-y-1.5">
-            <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
               {t.examples.heading}
             </h2>
-            <p className="max-w-xl text-xs text-slate-400 md:text-sm">
+            <p className="max-w-xl text-base text-slate-400 md:text-lg">
               We help GCC brands translate strategy into Salla storefronts that look premium, feel
               fast, and convert consistently.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {t.examples.items.map((item, index) => (
-              <motion.article
-                key={item.title}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/80 p-4 ring-1 ring-slate-950/90 transition hover:-translate-y-1.5 hover:border-teal-400/70 hover:ring-teal-500/60"
-              >
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(45,212,191,0.2),transparent_60%)]" />
-                </div>
-                <div className="relative space-y-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <h3 className="text-sm font-semibold tracking-tight text-slate-50">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-[11px] text-slate-300">{item.description}</p>
-                    </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900/80 text-xs text-teal-300 ring-1 ring-slate-700/80">
-                      <span className="h-4 w-6 rounded-xl bg-gradient-to-r from-slate-600 via-teal-400 to-emerald-300" />
-                    </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {t.examples.items.map((item, index) => {
+              const Icon = EXAMPLE_ICONS[index];
+              return (
+                <motion.article
+                  key={item.title}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-80px" }}
+                  className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/80 p-6 ring-1 ring-slate-950/90 transition hover:-translate-y-1.5 hover:border-teal-400/70 hover:ring-teal-500/60"
+                >
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(45,212,191,0.2),transparent_60%)]" />
                   </div>
-                  <div className="flex items-center justify-between gap-3 text-[10px] text-slate-400">
-                    <span>
-                      Salla store development · Salla store redesign · Salla ecommerce development
-                    </span>
-                    <span className="hidden rounded-full bg-slate-900/90 px-2 py-1 text-[10px] text-teal-200 md:inline">
-                      Case-study style setup
-                    </span>
+                  <div className="relative space-y-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400 ring-1 ring-teal-400/20">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="rounded-full bg-slate-900/90 px-3 py-1 text-xs font-medium text-teal-200">
+                        Case study
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold tracking-tight text-slate-50">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
                   </div>
-                </div>
-              </motion.article>
-            ))}
+                </motion.article>
+              );
+            })}
+          </div>
+          <div className="flex justify-center pt-4">
+            <button type="button" onClick={() => handleScrollTo("contact")} className="rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90">
+              {t.hero.primaryCta}
+            </button>
           </div>
         </motion.section>
 
@@ -966,29 +1011,44 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="space-y-4"
+          className="space-y-6"
         >
-          <div className="space-y-1.5">
-            <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
               {t.industries.heading}
             </h2>
-            <p className="max-w-xl text-xs text-slate-400 md:text-sm">
+            <p className="max-w-xl text-base text-slate-400 md:text-lg">
               We focus on ecommerce brands in the UAE and GCC that need a specialist Salla
               development partner, not a generalist agency.
             </p>
           </div>
-          <div className="flex flex-wrap gap-2 text-[11px]">
-            {t.industries.list.map((industry) => (
-              <span
-                key={industry}
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-950/80 px-3 py-1 text-slate-200 transition hover:border-teal-400/60 hover:text-teal-100"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
-                {industry}
-              </span>
-            ))}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {t.industries.list.map((industry, index) => {
+              const Icon = INDUSTRY_ICONS[index];
+              return (
+                <motion.div
+                  key={industry}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-40px" }}
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950/80 p-5 text-center transition hover:border-teal-400/50"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400 ring-1 ring-teal-400/20">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-200">{industry}</span>
+                </motion.div>
+              );
+            })}
           </div>
-          <p className="max-w-2xl text-xs text-slate-300 md:text-sm">{t.industries.paragraph}</p>
+          <p className="max-w-2xl text-base text-slate-300 md:text-lg">{t.industries.paragraph}</p>
+          <div className="flex justify-center pt-4">
+            <button type="button" onClick={() => handleScrollTo("contact")} className="rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90">
+              {t.hero.primaryCta}
+            </button>
+          </div>
         </motion.section>
 
         <motion.section
@@ -997,24 +1057,24 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="space-y-4 rounded-3xl border border-slate-800 bg-slate-950/80 px-5 py-6 md:px-8 md:py-8"
+          className="space-y-8 rounded-3xl border border-slate-800 bg-slate-950/80 px-6 py-8 md:px-10 md:py-10"
         >
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div className="space-y-1.5">
-              <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="space-y-3">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
                 {t.faq.heading}
               </h2>
-              <p className="max-w-xl text-xs text-slate-400 md:text-sm">
+              <p className="max-w-xl text-base text-slate-400 md:text-lg">
                 Clear answers about how we partner with Salla merchants across Dubai, UAE, Saudi
                 Arabia, and the wider GCC.
               </p>
             </div>
-            <span className="rounded-full bg-slate-900/80 px-3 py-1 text-[11px] text-slate-300">
+            <span className="rounded-full bg-slate-900/80 px-4 py-2 text-sm text-slate-300">
               Salla development · Salla store redesign · Salla support
             </span>
           </div>
 
-          <div className="divide-y divide-slate-800 text-sm">
+          <div className="divide-y divide-slate-800">
             <AnimatePresence initial={false}>
               {t.faq.items.map((item, index) => {
                 const isOpen = activeFaqIndex === index;
@@ -1023,18 +1083,18 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={() => setActiveFaqIndex(isOpen ? null : index)}
-                      className="flex w-full items-center justify-between gap-4 text-left text-xs font-medium text-slate-100 md:text-sm"
+                      className="flex w-full items-center justify-between gap-4 py-4 text-left text-base font-semibold text-slate-100 md:text-lg"
                     >
                       <span>{item.question}</span>
                       <span
-                        className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-[14px] text-slate-200"
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-200"
                         aria-hidden
                       >
                         <motion.span
                           initial={false}
                           animate={{ rotate: isOpen ? 45 : 0 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="block h-3 w-3 origin-center"
+                          className="block text-xl leading-none"
                         >
                           +
                         </motion.span>
@@ -1052,7 +1112,7 @@ export default function Home() {
                           }}
                           className="overflow-hidden"
                         >
-                          <p className="mt-2 text-[11px] leading-relaxed text-slate-300 md:text-xs">
+                          <p className="pb-4 text-sm leading-relaxed text-slate-300 md:text-base">
                             {item.answer}
                           </p>
                         </motion.div>
@@ -1073,12 +1133,12 @@ export default function Home() {
           viewport={{ once: true, margin: "-80px" }}
           className="grid gap-6 rounded-3xl border border-slate-800 bg-slate-950/90 px-5 py-6 shadow-[0_22px_65px_rgba(15,23,42,0.9)] md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.1fr)] md:px-8 md:py-8"
         >
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold tracking-tight text-slate-50 md:text-xl">
+          <div className="space-y-5">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
               {t.form.heading}
             </h2>
-            <p className="text-xs text-slate-300 md:text-sm">{t.form.body}</p>
-            <ul className="space-y-1.5 text-[11px] text-slate-300 md:text-xs">
+            <p className="text-base text-slate-300 md:text-lg">{t.form.body}</p>
+            <ul className="space-y-2 text-sm text-slate-300 md:text-base">
               <li className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-teal-400" />
                 <span>
@@ -1103,30 +1163,48 @@ export default function Home() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/70 bg-emerald-400/10 px-4 py-2 text-[11px] font-semibold text-emerald-100 ring-1 ring-emerald-500/50 transition hover:bg-emerald-400/20"
+                className="inline-flex items-center gap-3 rounded-full border border-emerald-400/70 bg-emerald-400/10 px-5 py-3 text-sm font-semibold text-emerald-100 ring-1 ring-emerald-500/50 transition hover:bg-emerald-400/20"
               >
-                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400 text-[10px] text-emerald-950">
-                  WA
-                </span>
+                <MessageCircle className="h-5 w-5" />
                 <span>
                   {language === "en"
                     ? "Prefer WhatsApp? Chat with us directly."
                     : "تفضل واتساب؟ تواصل معنا مباشرة."}
                 </span>
               </a>
-              <p className="text-[11px] text-slate-400 md:text-xs">{t.form.note}</p>
+              <p className="text-sm text-slate-400">{t.form.note}</p>
             </div>
           </div>
 
           <form
-            className="space-y-3 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-xs shadow-[0_18px_55px_rgba(15,23,42,0.9)] md:p-5"
-            onSubmit={(event) => {
+            className="space-y-4 rounded-3xl border border-slate-800 bg-slate-950/90 p-6 shadow-[0_18px_55px_rgba(15,23,42,0.9)] md:p-8"
+            onSubmit={async (event) => {
               event.preventDefault();
+              const form = event.currentTarget;
+              setFormStatus("submitting");
+              try {
+                const body = new FormData(form);
+                body.append("_subject", "SouqFlow – New inquiry from website");
+                body.append("_template", "table");
+                const res = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
+                  method: "POST",
+                  body,
+                  headers: { Accept: "application/json" },
+                });
+                if (res.ok) {
+                  setFormStatus("success");
+                  form.reset();
+                } else {
+                  setFormStatus("error");
+                }
+              } catch {
+                setFormStatus("error");
+              }
             }}
           >
-            <div className="grid gap-3 md:grid-cols-2">
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-medium text-slate-200">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-slate-200">
                   {t.form.fields.name}
                 </label>
                 <input
@@ -1134,11 +1212,11 @@ export default function Home() {
                   name="name"
                   required
                   placeholder={t.form.fields.name}
-                  className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
+                  className="w-full rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-base text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
                 />
               </div>
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-medium text-slate-200">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-slate-200">
                   {t.form.fields.email}
                 </label>
                 <input
@@ -1146,43 +1224,43 @@ export default function Home() {
                   name="email"
                   required
                   placeholder={t.form.fields.email}
-                  className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
+                  className="w-full rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-base text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
                 />
               </div>
             </div>
 
-            <div className="grid gap-3 md:grid-cols-2">
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-medium text-slate-200">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-slate-200">
                   {t.form.fields.phone}
                 </label>
                 <input
                   type="tel"
                   name="phone"
                   placeholder={t.form.fields.phone}
-                  className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
+                  className="w-full rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-base text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
                 />
               </div>
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-medium text-slate-200">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-slate-200">
                   {t.form.fields.company}
                 </label>
                 <input
                   type="text"
                   name="company"
                   placeholder={t.form.fields.company}
-                  className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
+                  className="w-full rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-base text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
                 />
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <label className="block text-[11px] font-medium text-slate-200">
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-slate-200">
                 {t.form.fields.projectType}
               </label>
               <select
                 name="projectType"
-                className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
+                className="w-full rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-base text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
                 defaultValue=""
                 required
               >
@@ -1209,8 +1287,8 @@ export default function Home() {
               </select>
             </div>
 
-            <div className="space-y-1.5">
-              <label className="block text-[11px] font-medium text-slate-200">
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-slate-200">
                 {t.form.fields.message}
               </label>
               <textarea
@@ -1218,72 +1296,106 @@ export default function Home() {
                 rows={4}
                 required
                 placeholder={t.form.fields.message}
-                className="w-full resize-none rounded-2xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
+                className="w-full resize-none rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-base text-slate-100 outline-none ring-1 ring-slate-900 transition focus:border-teal-400/80 focus:ring-teal-500/70"
               />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+            {formStatus === "success" && (
+              <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-200">
+                {language === "en"
+                  ? "Thanks! We’ll get back to you within 24 hours."
+                  : "شكراً! سنتواصل معك خلال 24 ساعة."}
+              </div>
+            )}
+            {formStatus === "error" && (
+              <div className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-200">
+                {language === "en"
+                  ? "Something went wrong. Please email us at hello@clickodigital.com or try again."
+                  : "حدث خطأ. راسلنا على hello@clickodigital.com أو حاول مرة أخرى."}
+              </div>
+            )}
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 px-5 py-2.5 text-xs font-semibold text-slate-950 shadow-lg shadow-teal-500/40 transition hover:scale-[1.02] hover:shadow-teal-300/70"
+                disabled={formStatus === "submitting"}
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-teal-500/40 transition hover:scale-[1.02] hover:shadow-teal-300/70 disabled:pointer-events-none disabled:opacity-60"
               >
-                {t.form.submit}
+                {formStatus === "submitting"
+                  ? (language === "en" ? "Sending…" : "جاري الإرسال…")
+                  : t.form.submit}
               </button>
-              <p className="text-[11px] text-slate-400 md:text-xs">{t.form.note}</p>
+              <p className="text-sm text-slate-400">{t.form.note}</p>
             </div>
           </form>
         </motion.section>
       </main>
 
-      <footer className="border-t border-slate-900 bg-slate-950/95 px-4 py-6 text-[11px] text-slate-400 md:px-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-start md:justify-between">
-          <div className="space-y-2">
-            <p className="max-w-md text-xs text-slate-200">{t.footer.intro}</p>
-            <p className="text-[10px] text-slate-500">
-              Salla development · Salla store development · Salla theme customization · Salla app
-              development · Salla integrations · Salla support
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-8">
-            <div className="space-y-1.5">
-              <h3 className="text-[11px] font-semibold text-slate-200">
+      <footer className="border-t border-slate-800 bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            <div className="lg:col-span-1">
+              <Image src="/souqflow-logo.png" alt="SouqFlow" width={160} height={42} className="h-10 w-auto object-contain" />
+              <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
+                {t.footer.intro}
+              </p>
+              <p className="mt-3 text-sm text-slate-500">
+                {t.footer.tagline}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-200">
                 {t.footer.servicesHeading}
               </h3>
-              <ul className="space-y-1 text-[11px]">
+              <ul className="mt-4 space-y-2">
                 {t.footer.services.map((service) => (
-                  <li key={service}>{service}</li>
+                  <li key={service}>
+                    <button
+                      type="button"
+                      onClick={() => handleScrollTo("services")}
+                      className="text-sm text-slate-400 transition hover:text-teal-300"
+                    >
+                      {service}
+                    </button>
+                  </li>
                 ))}
               </ul>
             </div>
-            <div className="space-y-1.5">
-              <h3 className="text-[11px] font-semibold text-slate-200">
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-200">
                 {t.footer.contactHeading}
               </h3>
-              <ul className="space-y-1 text-[11px]">
-                <li>
-                  {t.footer.emailLabel}:{" "}
-                  <span className="text-slate-300">hello@souqflow.com</span>
+              <ul className="mt-4 space-y-4">
+                <li className="flex items-start gap-3">
+                  <Mail className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                  <a href="mailto:hello@souqflow.com" className="text-sm text-slate-400 hover:text-teal-300">
+                    hello@souqflow.com
+                  </a>
                 </li>
-                <li>
-                  {t.footer.phoneLabel}:{" "}
-                  <span className="text-slate-300">+971 56 355 1010</span>
+                <li className="flex items-start gap-3">
+                  <Phone className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                  <a href="tel:+971563551010" className="text-sm text-slate-400 hover:text-teal-300">
+                    +971 56 355 1010
+                  </a>
                 </li>
-                <li>
-                  {t.footer.whatsappLabel}:{" "}
-                  <span className="text-slate-300">+971 56 355 1010</span>
+                <li className="flex items-start gap-3">
+                  <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                  <a href={whatsappHref} target="_blank" rel="noreferrer" className="text-sm text-slate-400 hover:text-teal-300">
+                    WhatsApp
+                  </a>
                 </li>
-                <li>
-                  <span className="text-slate-500">
+                <li className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                  <span className="text-sm text-slate-400">
                     Unit 2003-2, 20th Floor, The Exchange Tower, Business Bay, Dubai, UAE
                   </span>
                 </li>
               </ul>
             </div>
           </div>
-        </div>
-        <div className="mx-auto mt-4 flex max-w-6xl flex-wrap items-center justify-between gap-2 border-t border-slate-900 pt-3 text-[10px] text-slate-500">
-          <span>© {new Date().getFullYear()} SouqFlow. All rights reserved.</span>
-          <span>{t.footer.powered}</span>
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-slate-800 pt-8">
+            <span className="text-sm text-slate-500">© {new Date().getFullYear()} SouqFlow. All rights reserved.</span>
+            <span className="text-sm text-slate-500">{t.footer.powered}</span>
+          </div>
         </div>
       </footer>
 
@@ -1291,13 +1403,11 @@ export default function Home() {
         href={whatsappHref}
         target="_blank"
         rel="noreferrer"
-        className={`whatsapp-fab fixed bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-4 py-2 text-[11px] font-semibold text-emerald-950 shadow-lg transition hover:scale-[1.03] hover:bg-emerald-300 ${
-          isRTL ? "left-4" : "right-4"
+        className={`whatsapp-fab fixed bottom-6 z-40 inline-flex items-center gap-3 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-emerald-950 shadow-lg transition hover:scale-[1.03] hover:bg-emerald-400 ${
+          isRTL ? "left-6" : "right-6"
         }`}
       >
-        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-950/10 text-[10px]">
-          WA
-        </span>
+        <MessageCircle className="h-5 w-5" />
         <span className="hidden sm:inline">
           {language === "en" ? "WhatsApp – Salla project" : "واتساب – مشروع سلة"}
         </span>

@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .gradient-hero {
